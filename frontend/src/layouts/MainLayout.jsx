@@ -1,44 +1,77 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 function MainLayout() {
+  const navLinkClass = ({ isActive }) =>
+    `transition ${
+      isActive
+        ? "text-blue-400"
+        : "text-slate-300 hover:text-white"
+    }`
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
 
-      <header className="border-b border-slate-800">
+      <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur">
+
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
+          {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold"
+            className="flex items-center gap-2"
           >
-            VoyageAI
+            <span className="text-2xl">
+              ✈️
+            </span>
+
+            <span className="text-2xl font-bold tracking-tight">
+              Voyage<span className="text-blue-400">AI</span>
+            </span>
           </Link>
 
-          <div className="hidden gap-6 md:flex">
+          {/* Navigation */}
+          <div className="hidden items-center gap-8 md:flex">
 
-            <Link to="/" className="hover:text-blue-400">
+            <NavLink
+              to="/"
+              className={navLinkClass}
+            >
               Home
-            </Link>
+            </NavLink>
 
-            <Link to="/explore" className="hover:text-blue-400">
+            <NavLink
+              to="/explore"
+              className={navLinkClass}
+            >
               Explore
-            </Link>
+            </NavLink>
 
-            <Link to="/trip-planner" className="hover:text-blue-400">
+            <NavLink
+              to="/trip-planner"
+              className={navLinkClass}
+            >
               Trip Planner
-            </Link>
+            </NavLink>
 
-            <Link to="/community" className="hover:text-blue-400">
+            <NavLink
+              to="/community"
+              className={navLinkClass}
+            >
               Community
-            </Link>
+            </NavLink>
 
-            <Link to="/login" className="hover:text-blue-400">
+            <NavLink
+              to="/login"
+              className="rounded-lg bg-blue-600 px-5 py-2.5 font-medium transition hover:bg-blue-700"
+            >
               Login
-            </Link>
+            </NavLink>
 
           </div>
 
         </nav>
+
       </header>
 
       <main>
